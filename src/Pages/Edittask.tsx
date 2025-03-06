@@ -21,6 +21,8 @@ const Edittask = () => {
         if(isuser==""){
             navigate("/")
         }else{
+            const today = new Date().toISOString().split('T')[0];
+            setMinDate(today);
             gettaskdetail()
         }
     }, [])
