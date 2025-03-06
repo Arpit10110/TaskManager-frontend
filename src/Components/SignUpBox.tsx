@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Backdrop from '@mui/material/Backdrop';
@@ -10,6 +10,8 @@ const SignUpBox = () => {
     const [Email,SetEmail] = useState("");
     const [Password,SetPassword] = useState("");
     const [open, setOpen] = useState(false);
+    const isuser = localStorage.getItem("token")==null? "":localStorage.getItem("token")
+
 
     interface userdata{
         name: string,
@@ -38,6 +40,12 @@ const SignUpBox = () => {
         }
     }
 
+    useEffect(() => {
+        if(isuser!=""){
+            navigate("/")
+        }
+    }, [])
+
   return (
    <>
        <Backdrop
@@ -47,7 +55,7 @@ const SignUpBox = () => {
         <CircularProgress color="inherit" />
       </Backdrop>
         <div className="flex justify-center mt-[8rem] " >
-            <form onSubmit={createuser} className="flex w-[40%] gap-[1rem] flex-col bg-gray-800 px-[1rem] items-center py-[2rem] rounded-[1rem]  " >
+            <form onSubmit={createuser} className="flex w-[40%] max-[700px]:w-[90%] gap-[1rem] flex-col bg-gray-800 px-[1rem] items-center py-[2rem] rounded-[1rem]  " >
                 <div className="flex flex-col gap-[1.5rem] w-full " >
                     <input  className="bg-black p-[0.5rem] text-[1.3rem] rounded-[5px] "  type="text" onChange={(e)=>SetName(e.target.value)}  placeholder="Name" required/>
                     <input  className="bg-black p-[0.5rem] text-[1.3rem] rounded-[5px] " type="email" onChange={(e)=>SetEmail(e.target.value)}  placeholder="Email" required/>

@@ -3,6 +3,7 @@ import Home from "./Pages/Home"
 import SignUp from "./Pages/SignUp.tsx"
 import Login from "./Pages/Login.tsx"
 import Createtask from "./Pages/Createtask.tsx"
+import Edittask from "./Pages/Edittask.tsx"
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         <Route path="/signup"  element={<SignUp/>}  />
         <Route path="/login"  element={<Login/>}  />
         <Route path="/createtask"  element={<Createtask/>}  />
+        <Route path="/edittask/:id"  element={<Edittask/>}  />
       </Routes>
     </Router>
   )

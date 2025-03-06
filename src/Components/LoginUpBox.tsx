@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Backdrop from '@mui/material/Backdrop';
@@ -8,6 +8,7 @@ const LoginUpBox = () => {
     const [Email,SetEmail] = useState("");
     const [Password,SetPassword] = useState("");
     const [open, setOpen] = useState(false);
+    const isuser = localStorage.getItem("token")==null? "":localStorage.getItem("token")
 
     interface userdata{
         email: string,
@@ -22,8 +23,12 @@ const LoginUpBox = () => {
             password:Password
         }
         try {
-            const {data} = await axios.post(`${import.meta.env.VITE_PORT}/login`,userdata)
+            const {data} = await axios.post(`${import.meta.env.VITE_PORT}/login`,userdata,{
+                withCredentials: true
+            })
+            console.log(data)
             if(data.success){
+                localStorage.setItem("token",data.token)
                 navigate("/")
             }else{
                 alert(data.message)
@@ -34,6 +39,12 @@ const LoginUpBox = () => {
         }
     }
 
+    useEffect(() => {
+        if(isuser!=""){
+            navigate("/")
+        }
+    }, [])
+    
 
   return (
    <>
@@ -44,7 +55,7 @@ const LoginUpBox = () => {
         <CircularProgress color="inherit" />
       </Backdrop>
     <div className="flex justify-center mt-[8rem] " >
-            <form onSubmit={loginuser} className="flex w-[40%] gap-[1rem] flex-col bg-gray-800 px-[1rem] items-center py-[2rem] rounded-[1rem]  " >
+            <form onSubmit={loginuser} className="flex w-[40%] max-[700px]:w-[90%] gap-[1rem] flex-col bg-gray-800 px-[1rem] items-center py-[2rem] rounded-[1rem]  " >
                 <div className="flex flex-col gap-[1.5rem] w-full " >
                     <input  className="bg-black p-[0.5rem] text-[1.3rem] rounded-[5px] " type="email" onChange={(e)=>SetEmail(e.target.value)}  placeholder="Email" required/>
                     <input  className="bg-black p-[0.5rem] text-[1.3rem] rounded-[5px] " type="password" onChange={(e)=>SetPassword(e.target.value)}  placeholder="Password" required/>

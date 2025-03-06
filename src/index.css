@@ -1,9 +1,9 @@
 @import "tailwindcss";
-/* @theme {
-    --breakpoint-xs: 30rem;
+@theme {
+    --breakpoint-belowtab: 650px ;
     --breakpoint-2xl: 100rem;
     --breakpoint-3xl: 120rem;
-  } */
+  }
 
   html{
     font-size: 75%;
@@ -13,3 +13,16 @@
     background-color: black;
     color: white;
    }
+
+
+   @media only screen and (width<=700px){
+    html{
+        font-size: 60%;
+    }
+}
+
+   @media only screen and (width<=450px){
+    html{
+        font-size: 55%;
+    }
+}
