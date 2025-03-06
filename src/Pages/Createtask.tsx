@@ -37,7 +37,9 @@ const Createtask: React.FC = () => {
                status:false,
             }
             try {
-                const {data} = await axios.post(`${import.meta.env.VITE_PORT}/createtask`,taskdata)
+                const {data} = await axios.post(`${import.meta.env.VITE_PORT}/createtask`,taskdata,{
+                    withCredentials:true
+                })
                 console.log(data)
                 alert("Task created successfully")
                 window.location.reload();

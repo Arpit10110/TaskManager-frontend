@@ -84,8 +84,9 @@ const Task = () => {
                                         <h1 className='text-[1.4rem] font-bold ' >{i.status? <del>{i.title}</del>:`${i.title}`}</h1>
                                         <p className='text-[1.3rem]' >{i.status? <del>{i.desc}</del>:`${i.desc}`}</p> 
                                    </div>
-                                   <div>
+                                   <div className='flex gap-[2rem]' >
                                         <h1 className='text-[1.4rem] font-bold '><span className='text-green-700' >Status- </span>{i.status? "Completed":"Incomplete"    }</h1>
+                                        <h1 className='text-[1.4rem] font-bold '><span className='text-green-700' >Due Date- </span>{i.duedate}</h1>
                                    </div>
                                 </div>
                             )
