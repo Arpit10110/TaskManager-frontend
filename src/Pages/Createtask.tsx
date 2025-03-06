@@ -17,7 +17,6 @@ const Createtask: React.FC = () => {
     }, []);
 
     interface taskdatatype{
-        user_email: string,
         title:string,
         desc:string,
         status:boolean,
@@ -36,7 +35,6 @@ const Createtask: React.FC = () => {
                desc:Desc,
                duedate:DueDate,
                status:false,
-               user_email:"omagrahari55@gmail.com"
             }
             try {
                 const {data} = await axios.post(`${import.meta.env.VITE_PORT}/createtask`,taskdata)
